@@ -2,6 +2,7 @@ Must Have:
 
 Added (
   prisma
+  uuid
 )
 
 login page (
