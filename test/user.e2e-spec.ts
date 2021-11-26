@@ -43,8 +43,8 @@ describe('User Controller (e2e)', () => {
         phone,
       })
       .expect(201)
-      .expect({
-        data: {
+      .then((response) => {
+        expect(response.body).toEqual({
           id: expect.any(String),
           name: name,
           accountCode: expect.any(String),
@@ -53,9 +53,9 @@ describe('User Controller (e2e)', () => {
           phone: phone,
           balance: 0,
           extract: [],
-          created_at: expect.any(Date),
-          updated_at: expect.any(Date),
-        },
+          created_at: expect.any(String),
+          updated_at: expect.any(String),
+        });
       });
   });
 
