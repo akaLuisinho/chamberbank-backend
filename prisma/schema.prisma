@@ -12,7 +12,7 @@ datasource db {
 }
 
 model User {
-  id          String   @unique
+  id          String   @unique @id
   accountCode String   @unique
   cpf         String   @unique
   email       String   @unique
