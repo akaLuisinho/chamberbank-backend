@@ -12,12 +12,13 @@ datasource db {
 }
 
 model User {
-  id          String   @unique @id
-  accountCode String   @unique
+  id          String   @id @unique
+  name        String
+  accountCode String?  @unique
   cpf         String   @unique
   email       String   @unique
   phone       String
-  balance     Float
+  balance     Float    @default(0)
   extract     Float[]
   created_at  DateTime @default(now())
   updated_at  DateTime @default(now())
