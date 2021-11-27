@@ -3,17 +3,13 @@ import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
 import { UserModule } from './../src/user/user.module';
 import { UserService } from '../src/user/user.service';
+import { response } from 'express';
 
 describe('User Controller (e2e)', () => {
   let app: INestApplication;
 
   const mockUserService = {
-    create: (dto) => dto,
-    findAll: () => ['user1', 'user2', 'user3'],
-    findOne: (id, dto) => dto,
-    findByAccountCode: (accountCode, dto) => dto,
-    updatefindByAccountCode: (id, dto) => dto,
-    remove: (id, dto) => null,
+    create: (data) => data,
   };
 
   beforeAll(async () => {
@@ -57,13 +53,5 @@ describe('User Controller (e2e)', () => {
           updated_at: expect.any(String),
         });
       });
-  });
-
-  it('/user (GET)', () => {
-    return request(app.getHttpServer())
-      .get('/user')
-      .send({})
-      .expect(200)
-      .expect(mockUserService.findAll);
   });
 });

@@ -6,29 +6,93 @@ import { PrismaService } from '../prisma.service';
 @Injectable()
 export class UserService {
   constructor(private prisma: PrismaService) {}
+
   async create(createUserDto: CreateUserDto) {
+    if (await this.findByCPF(createUserDto.cpf)) {
+      return 'user already exists';
+    }
+
     try {
       return await this.prisma.user.create({
         data: createUserDto,
+      });
+    } catch (error) {
+      //unable to create user
+      return error.message;
+    }
+  }
+
+  async findAll() {
+    try {
+      return await this.prisma.user.findMany({});
+    } catch (error) {
+      //no users found
+      return error.message;
+    }
+  }
+
+  async findOne(id: string) {
+    try {
+      return await this.prisma.user.findUnique({
+        where: {
+          id: id,
+        },
+      });
+    } catch (error) {
+      //user not found
+      return error.message;
+    }
+  }
+
+  async findByAccountCode(accountCode: string) {
+    try {
+      return await this.prisma.user.findUnique({
+        where: {
+          accountCode: accountCode,
+        },
+      });
+    } catch (error) {
+      //user not found
+      return error.message;
+    }
+  }
+
+  async findByCPF(cpf: string) {
+    try {
+      return await this.prisma.user.findUnique({
+        where: {
+          cpf: cpf,
+        },
       });
     } catch (error) {
       return error.message;
     }
   }
 
-  findAll() {
-    return `This action returns all user`;
+  async update(id: string, updateUserDto: UpdateUserDto) {
+    try {
+      return await this.prisma.user.update({
+        data: updateUserDto,
+        where: {
+          id: id,
+        },
+      });
+    } catch (error) {
+      return error.message;
+      //unable to update user
+    }
   }
 
-  findOne(id: string) {
-    return `This action returns a #${id} user`;
-  }
-
-  update(id: string, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
-  }
-
-  remove(id: string) {
-    return `This action removes a #${id} user`;
+  async remove(id: string) {
+    try {
+      return await this.prisma.user.delete({
+        where: {
+          id: id,
+        },
+      });
+    } catch (error) {
+      return error.message;
+      //unable to delete account
+    }
   }
 }
