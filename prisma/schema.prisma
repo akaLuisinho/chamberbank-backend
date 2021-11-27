@@ -16,6 +16,7 @@ model User {
   name        String
   accountCode String?  @unique
   cpf         String   @unique
+  password    String
   email       String   @unique
   phone       String
   balance     Float    @default(0)

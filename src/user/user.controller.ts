@@ -6,16 +6,22 @@ import {
   Patch,
   Param,
   Delete,
+  Request,
   UseGuards,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { LocalAuthGuard } from '../auth/local.auth-guard';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { AuthService } from '../auth/auth.service';
 import { v4 as uuid } from 'uuid';
+
 @Controller('user')
 export class UserController {
-  constructor(private readonly userService: UserService) {}
+  constructor(
+    private readonly userService: UserService,
+    private authService: AuthService,
+  ) {}
 
   @Post()
   create(@Body() createUserDto: CreateUserDto) {
@@ -30,6 +36,11 @@ export class UserController {
   }
 
   @UseGuards(LocalAuthGuard)
+  @Post('/login')
+  async login(@Request() req) {
+    return this.authService.login(req.user);
+  }
+
   @Get()
   findAll() {
     return this.userService.findAll();
