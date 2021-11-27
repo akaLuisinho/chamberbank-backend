@@ -3,6 +3,8 @@ Must Have:
 Added (
   prisma
   uuid
+  passport
+  bcrypt
 )
 
 login page (
