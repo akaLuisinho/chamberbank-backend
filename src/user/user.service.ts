@@ -20,7 +20,6 @@ export class UserService {
         data: createUserDto,
       });
     } catch (error) {
-      console.log(error);
       //unable to create user
       return error.message;
     }

@@ -26,9 +26,14 @@ export class AuthService {
     return null;
   }
 
-  async login(user: CreateUserDto) {
+  async login(user: any) {
+    console.log(user);
     const payload = {
-      ...user,
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      created_at: user.created_at,
+      updated_at: user.updated_at,
     };
 
     return {
