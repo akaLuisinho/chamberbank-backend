@@ -29,7 +29,6 @@ export class UserController {
     createUserDto.id = uuid();
     createUserDto.accountCode = Math.round(Math.random() * 987634).toString();
     createUserDto.balance = 0;
-    // createUserDto.transactions = '';
     createUserDto.created_at = new Date();
     createUserDto.updated_at = new Date();
 
@@ -49,9 +48,21 @@ export class UserController {
   }
 
   @UseGuards(JwtAuthGuard)
-  @Get(':id')
+  @Get('/id/:id')
   findOne(@Param('id') id: string) {
     return this.userService.findOne(id);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('/accountCode/:accountCode')
+  findByAccountCode(@Param('accountCode') accountCode: string, @Request() req) {
+    return this.userService.findByAccountCode(accountCode);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('/cpf/:cpf')
+  findByCPF(@Param('cpf') cpf: string) {
+    return this.userService.findByCPF(cpf);
   }
 
   @UseGuards(JwtAuthGuard)

@@ -7,13 +7,12 @@ export class TransactionService {
   constructor(private prisma: PrismaService) {}
 
   async create(createTransactionDto: CreateTransactionDto) {
-    console.log(createTransactionDto);
     try {
       return await this.prisma.transaction.create({
         data: createTransactionDto,
       });
     } catch (error) {
-      console.log(error);
+      return error.message;
     }
   }
 
