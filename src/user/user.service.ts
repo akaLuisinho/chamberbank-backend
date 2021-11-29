@@ -27,7 +27,11 @@ export class UserService {
 
   async findAll() {
     try {
-      return await this.prisma.user.findMany({});
+      return await this.prisma.user.findMany({
+        include: {
+          transactions: true,
+        },
+      });
     } catch (error) {
       //no users found
       return error.message;

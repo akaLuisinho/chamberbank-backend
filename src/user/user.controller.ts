@@ -29,7 +29,7 @@ export class UserController {
     createUserDto.id = uuid();
     createUserDto.accountCode = Math.round(Math.random() * 987634).toString();
     createUserDto.balance = 0;
-    createUserDto.extract = [];
+    // createUserDto.transactions = '';
     createUserDto.created_at = new Date();
     createUserDto.updated_at = new Date();
 
