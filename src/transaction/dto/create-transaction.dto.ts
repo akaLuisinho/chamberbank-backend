@@ -1,8 +1,7 @@
 export class CreateTransactionDto {
   id: string;
-  UserId: string;
-  //   user: string;
+  fromId: string;
+  toId: string;
   created_at: Date;
   moneyQuantity: number;
-  operationType: string;
 }

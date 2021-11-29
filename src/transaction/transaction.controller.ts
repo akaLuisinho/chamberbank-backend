@@ -24,7 +24,8 @@ export class TransactionController {
   create(@Body() createTransactionDto: CreateTransactionDto, @Request() req) {
     createTransactionDto.id = uuid();
     createTransactionDto.created_at = new Date();
-    createTransactionDto.UserId = req.user.id;
+    createTransactionDto.fromId = req.user.id;
+
     return this.transactionService.create(createTransactionDto);
   }
 

@@ -29,7 +29,8 @@ export class UserService {
     try {
       return await this.prisma.user.findMany({
         include: {
-          transactions: true,
+          receivedTransations: true,
+          sentTransations: true,
         },
       });
     } catch (error) {
