@@ -29,9 +29,13 @@ export class TransactionController {
     return this.transactionService.create(createTransactionDto);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Get()
-  findAll() {
-    return this.transactionService.findAll();
+  findAllFromOneUser(@Request() req) {
+    const transactions = this.transactionService.findAllFromOneUser(
+      req.user.id,
+    );
+    return transactions;
   }
 
   @Get(':id')

@@ -77,6 +77,21 @@ export class UserService {
     }
   }
 
+  async updateBalance(userId: string, value: any) {
+    const user = await this.prisma.user.findUnique({
+      where: { id: userId },
+    });
+
+    const newBalance = user.balance + value;
+
+    await this.prisma.user.update({
+      data: {
+        balance: newBalance,
+      },
+      where: { id: userId },
+    });
+  }
+
   async update(id: string, updateUserDto: UpdateUserDto) {
     try {
       return await this.prisma.user.update({
