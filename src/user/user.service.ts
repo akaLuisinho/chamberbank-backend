@@ -81,7 +81,6 @@ export class UserService {
     const user = await this.prisma.user.findUnique({
       where: { id: userId },
     });
-
     const newBalance = user.balance + value;
 
     await this.prisma.user.update({
