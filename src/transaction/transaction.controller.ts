@@ -28,12 +28,9 @@ export class TransactionController {
     );
   }
 
-  @UseGuards(JwtAuthGuard)
   @Get()
-  findAllFromOneUser(@Request() req) {
-    const transactions = this.transactionService.findAllFromOneUser(
-      req.user.id,
-    );
+  findAllFromOneUser(@Body() userId: string) {
+    const transactions = this.transactionService.findAllFromOneUser(userId);
     return transactions;
   }
 }

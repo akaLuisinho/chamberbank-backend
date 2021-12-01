@@ -14,7 +14,7 @@ export class TransactionService {
       throw new HttpException(
         {
           status: HttpStatus.BAD_REQUEST,
-          error: 'Cannot Transfer yourself',
+          error: 'Cannot transfer to yourself',
         },
         HttpStatus.BAD_REQUEST,
       );

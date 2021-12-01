@@ -4,6 +4,7 @@ import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
 import { CreateUserDto } from '../user/dto/create-user.dto';
 
+//automatically authenticates user with passport-js
 @Injectable()
 export class AuthService {
   constructor(
