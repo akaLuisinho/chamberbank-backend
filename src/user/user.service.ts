@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { PrismaService } from '../prisma.service';
 import * as bcrypt from 'bcrypt';
@@ -7,9 +7,9 @@ export class UserService {
   constructor(private prisma: PrismaService) {}
 
   async create(createUserDto: CreateUserDto) {
-    // if (await this.findByCPF(createUserDto.cpf)) {
-    //   return 'user already exists';
-    // }
+    if (await this.findByCPF(createUserDto.cpf)) {
+      return 'user already exists';
+    }
 
     try {
       const hashedPass = await bcrypt.hash(createUserDto.password, 12);
@@ -19,8 +19,13 @@ export class UserService {
         data: createUserDto,
       });
     } catch (error) {
-      //unable to create user
-      return error.message;
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: 'Cannot Create User',
+        },
+        HttpStatus.BAD_REQUEST,
+      );
     }
   }
 
@@ -33,8 +38,13 @@ export class UserService {
         },
       });
     } catch (error) {
-      //no users found
-      return error.message;
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: 'Cannot Find Any User',
+        },
+        HttpStatus.BAD_REQUEST,
+      );
     }
   }
 
@@ -46,8 +56,13 @@ export class UserService {
         },
       });
     } catch (error) {
-      //user not found
-      return error.message;
+      throw new HttpException(
+        {
+          status: HttpStatus.NOT_FOUND,
+          error: 'No User Found',
+        },
+        HttpStatus.NOT_FOUND,
+      );
     }
   }
 
@@ -59,8 +74,13 @@ export class UserService {
         },
       });
     } catch (error) {
-      //user not found
-      return error.message;
+      throw new HttpException(
+        {
+          status: HttpStatus.NOT_FOUND,
+          error: 'No User Found',
+        },
+        HttpStatus.NOT_FOUND,
+      );
     }
   }
 
@@ -72,20 +92,36 @@ export class UserService {
         },
       });
     } catch (error) {
-      return error.message;
+      throw new HttpException(
+        {
+          status: HttpStatus.NOT_FOUND,
+          error: 'No User Found',
+        },
+        HttpStatus.NOT_FOUND,
+      );
     }
   }
 
   async updateBalance(userId: string, value: any) {
-    const user = await this.prisma.user.findUnique({
-      where: { id: userId },
-    });
-    const newBalance = user.balance + value;
-    await this.prisma.user.update({
-      data: {
-        balance: newBalance,
-      },
-      where: { id: userId },
-    });
+    try {
+      const user = await this.prisma.user.findUnique({
+        where: { id: userId },
+      });
+      const newBalance = user.balance + value;
+      await this.prisma.user.update({
+        data: {
+          balance: newBalance,
+        },
+        where: { id: userId },
+      });
+    } catch (error) {
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: 'Cannot Update User Balance',
+        },
+        HttpStatus.BAD_REQUEST,
+      );
+    }
   }
 }

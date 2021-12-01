@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { CreateTransactionDto } from './dto/create-transaction.dto';
 import { PrismaService } from '../prisma.service';
 import { UserService } from '../user/user.service';
@@ -30,15 +30,31 @@ export class TransactionService {
           data: createTransactionDto,
         });
       } catch (error) {
-        return error.message;
+        throw new HttpException(
+          {
+            status: HttpStatus.BAD_REQUEST,
+            error: 'Could not create transaction',
+          },
+          HttpStatus.BAD_REQUEST,
+        );
       }
     }
   }
 
   async findAllFromOneUser(id: string) {
-    const transactions = await this.prisma.transaction.findMany({
-      where: { OR: [{ fromId: id }, { toId: id }] },
-    });
-    return transactions;
+    try {
+      const transactions = await this.prisma.transaction.findMany({
+        where: { OR: [{ fromId: id }, { toId: id }] },
+      });
+      return transactions;
+    } catch (error) {
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: 'Could not find transactions',
+        },
+        HttpStatus.BAD_REQUEST,
+      );
+    }
   }
 }
