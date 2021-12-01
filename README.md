@@ -1,10 +1,14 @@
 # Chamberbank!
 
->## Solução Utilizada
->
-><p>A ideia foi criar um banco que, como open-banking, pode se ter acesso as transações do usuário sem necessariamente estar autenticado como o mesmo, como é possível utilizando a rota <span style="background:#222">/transaction</span>, enviando o id do usuário que se deseja obter acesso ao histórico de transações.</p>
+## Solução Utilizada
+
+<p>A ideia foi criar um banco que, como open-banking, pode se ter acesso as transações do usuário sem necessariamente estar autenticado como o mesmo, como é possível utilizando a rota <span style="background:#222">/transaction</span>, enviando o id do usuário que se deseja obter acesso ao histórico de transações.</p>
 
 ## Pacotes Adicionais Utilizados
+
+### Nestjs
+- Framework para criação de back-end
+- Criação de rotas, controllers, services e arquitetura
 
 #### Prisma
 - Criação de migrations
