@@ -5,14 +5,12 @@ import {
   Body,
   Patch,
   Param,
-  Delete,
   Request,
   UseGuards,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { LocalAuthGuard } from '../auth/local-auth.guard';
 import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
 import { AuthService } from '../auth/auth.service';
 import { v4 as uuid } from 'uuid';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
@@ -55,7 +53,7 @@ export class UserController {
 
   @UseGuards(JwtAuthGuard)
   @Get('/accountCode/:accountCode')
-  findByAccountCode(@Param('accountCode') accountCode: string, @Request() req) {
+  findByAccountCode(@Param('accountCode') accountCode: string) {
     return this.userService.findByAccountCode(accountCode);
   }
 

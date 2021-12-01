@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
 import { PrismaService } from '../prisma.service';
 import * as bcrypt from 'bcrypt';
 @Injectable()
@@ -82,39 +81,11 @@ export class UserService {
       where: { id: userId },
     });
     const newBalance = user.balance + value;
-
     await this.prisma.user.update({
       data: {
         balance: newBalance,
       },
       where: { id: userId },
     });
-  }
-
-  async update(id: string, updateUserDto: UpdateUserDto) {
-    try {
-      return await this.prisma.user.update({
-        data: updateUserDto,
-        where: {
-          id: id,
-        },
-      });
-    } catch (error) {
-      return error.message;
-      //unable to update user
-    }
-  }
-
-  async remove(id: string) {
-    try {
-      return await this.prisma.user.delete({
-        where: {
-          id: id,
-        },
-      });
-    } catch (error) {
-      return error.message;
-      //unable to delete account
-    }
   }
 }
