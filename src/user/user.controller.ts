@@ -64,7 +64,7 @@ export class UserController {
   }
 
   @UseGuards(JwtAuthGuard)
-  @Patch('/addmoney')
+  @Patch('/deposit')
   addMoney(@Body() body: any, @Request() req) {
     return this.userService.updateBalance(req.user.id, body.moneyQuantity);
   }
