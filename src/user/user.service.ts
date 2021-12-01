@@ -7,9 +7,9 @@ export class UserService {
   constructor(private prisma: PrismaService) {}
 
   async create(createUserDto: CreateUserDto) {
-    if (await this.findByCPF(createUserDto.cpf)) {
-      return 'user already exists';
-    }
+    // if (await this.findByCPF(createUserDto.cpf)) {
+    //   return 'user already exists';
+    // }
 
     try {
       const hashedPass = await bcrypt.hash(createUserDto.password, 12);
