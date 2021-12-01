@@ -1,5 +1,5 @@
 # Project: Chamberbank
-# 📁 Collection: User 
+# User 
 
 
 ## End-point: Create User
@@ -7,27 +7,25 @@
 >```
 >chamberbank-backend.herokuapp.com/user/create
 >```
+Receive user data from body and returns user with auto-generated account code and id
 ### Body (**raw**)
 
 ```json
 {
-    "name": "API Test",
+    "name": "Carlos Nogueira Filho",
     "password": "12345678",
-    "cpf":"45456746787686578678234",
-    "email":"@test",
+    "cpf":"23857205483",
+    "email":"test@test.com",
     "phone":"(61) 99999-9999"
 }
 ```
-
-
 ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
-
 ## End-point: Login User
-Login to user that exists and return user data and JWT
 ### Method: POST
 >```
 >chamberbank-backend.herokuapp.com/user/login
 >```
+Receive user accountCode and password and authenticates, returning a JWT token
 ### Body (**raw**)
 
 ```json
@@ -41,81 +39,71 @@ Login to user that exists and return user data and JWT
 ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
 
 ## End-point: List Users
-List all users
 ### Method: GET
 >```
 >chamberbank-backend.herokuapp.com/user
 >```
-### Body (**raw**)
-
-```json
-
-```
-
+List all users
 ### 🔑 Authentication bearer
 
 |Param|value|Type|
 |---|---|---|
-|token|eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImEwNzg5NGQwLTJiYjYtNDM4YS1iNGJlLTk1NTZlZTlmYWE2YSIsIm5hbWUiOiJBUEkgVGVzdCIsImVtYWlsIjoiQHRlc3QiLCJjcmVhdGVkX2F0IjoiMjAyMS0xMi0wMVQyMDo0MzowNi4yNzFaIiwidXBkYXRlZF9hdCI6IjIwMjEtMTItMDFUMjA6NDM6MDYuMjcxWiIsImlhdCI6MTYzODM5MTQxMywiZXhwIjoxNjM4NDc3ODEzfQ.h1VQcQ_PsANHM6O9AyhfM1fFvd0bq3GUwfNQUO6TLOc|string|
-
-
+|token|JWT TOKEN|string|
 
 ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
 
 ## End-point: Find User By Id
-Return data from the user with the sent id
 ### Method: GET
 >```
 >chamberbank-backend.herokuapp.com/user/id/{id}
 >```
+Receives an user id in the Params and returns all user data
+
 ### 🔑 Authentication bearer
 
 |Param|value|Type|
 |---|---|---|
-|token|eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjM1Y2M1YzAxLWU1OGUtNDk3Zi1hNDJkLTAyM2I2MjFhZWQwYyIsIm5hbWUiOiJMdWlzIEZlbGlwZSIsImVtYWlsIjoibHVpc0BnaWwuY29tIiwiY3JlYXRlZF9hdCI6IjIwMjEtMTEtMjlUMTI6MzI6MTguNzA1WiIsInVwZGF0ZWRfYXQiOiIyMDIxLTExLTI5VDEyOjMyOjE4LjcwNVoiLCJpYXQiOjE2MzgyNzY2NzksImV4cCI6MTYzODM2MzA3OX0.33NDNOzBk6-izVGNXcP87y5pIuRTtKyUO93--bT54Jo|string|
+|token|JWT TOKEN|string|
 
 
 
 ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
 
 ## End-point: Find User By Accountcode
-Return data from the user with the sent account code
 ### Method: GET
 >```
 >chamberbank-backend.herokuapp.com/user/accountCode/{accountCode}
 >```
+Receives an user account code in the Params and returns all user data
 ### 🔑 Authentication bearer
 
 |Param|value|Type|
 |---|---|---|
-|token|eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjM1Y2M1YzAxLWU1OGUtNDk3Zi1hNDJkLTAyM2I2MjFhZWQwYyIsIm5hbWUiOiJMdWlzIEZlbGlwZSIsImVtYWlsIjoibHVpc0BnaWwuY29tIiwiY3JlYXRlZF9hdCI6IjIwMjEtMTEtMjlUMTI6MzI6MTguNzA1WiIsInVwZGF0ZWRfYXQiOiIyMDIxLTExLTI5VDEyOjMyOjE4LjcwNVoiLCJpYXQiOjE2MzgyNzY2NzksImV4cCI6MTYzODM2MzA3OX0.33NDNOzBk6-izVGNXcP87y5pIuRTtKyUO93--bT54Jo|string|
-
-
+|token|JWT TOKEN|string|
 
 ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
 
 ## End-point: Find User By CPF
-Return data from the user with the sent account cpf
 ### Method: GET
 >```
 >chamberbank-backend.herokuapp.com/user/cpf/{cpf}
 >```
+Receives an user account code in the Params and returns all user data
 ### 🔑 Authentication bearer
 
 |Param|value|Type|
 |---|---|---|
-|token|eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjM1Y2M1YzAxLWU1OGUtNDk3Zi1hNDJkLTAyM2I2MjFhZWQwYyIsIm5hbWUiOiJMdWlzIEZlbGlwZSIsImVtYWlsIjoibHVpc0BnaWwuY29tIiwiY3JlYXRlZF9hdCI6IjIwMjEtMTEtMjlUMTI6MzI6MTguNzA1WiIsInVwZGF0ZWRfYXQiOiIyMDIxLTExLTI5VDEyOjMyOjE4LjcwNVoiLCJpYXQiOjE2MzgyNzY2NzksImV4cCI6MTYzODM2MzA3OX0.33NDNOzBk6-izVGNXcP87y5pIuRTtKyUO93--bT54Jo|string|
-
-
+|token|JWT TOKEN|string|
 
 ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
 
 ## End-point: Deposit Money
-Deposit money to authenticated user balance
 ### Method: PATCH
 >```
 >chamberbank-backend.herokuapp.com/user/deposit
 >```
+Receives a value in the body and inserts money into authenticated user balance
+
 ### Body (**raw**)
 
 ```json
@@ -128,20 +116,21 @@ Deposit money to authenticated user balance
 
 |Param|value|Type|
 |---|---|---|
-|token|eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjM1Y2M1YzAxLWU1OGUtNDk3Zi1hNDJkLTAyM2I2MjFhZWQwYyIsIm5hbWUiOiJMdWlzIEZlbGlwZSIsImVtYWlsIjoibHVpc0BnaWwuY29tIiwiY3JlYXRlZF9hdCI6IjIwMjEtMTEtMjlUMTI6MzI6MTguNzA1WiIsInVwZGF0ZWRfYXQiOiIyMDIxLTExLTI5VDEyOjMyOjE4LjcwNVoiLCJpYXQiOjE2MzgyNzY2NzksImV4cCI6MTYzODM2MzA3OX0.33NDNOzBk6-izVGNXcP87y5pIuRTtKyUO93--bT54Jo|string|
+|token|JWT TOKEN|string|
 
 
 
 ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
-# 📁 Collection: Transaction 
+# 📁 Transaction 
 
 
 ## End-point: Create Transaction
-Crete a transaction between authenticated user and user from the sent id
 ### Method: POST
 >```
 >chamberbank-backend.herokuapp.com/transaction
 >```
+Receives an id and value to make a transaction between the authenticated user and the "toId"
+
 ### Body (**raw**)
 
 ```json
@@ -150,28 +139,28 @@ Crete a transaction between authenticated user and user from the sent id
     "moneyQuantity": 0
 }
 ```
-
 ### 🔑 Authentication bearer
 
 |Param|value|Type|
 |---|---|---|
-|token|eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRmYjcxOWFiLTc2MWYtNGJhYS05ZGVlLTRiNjUyZTI0ZTc5MSIsIm5hbWUiOiJMdWlzIEZlbGlwZSIsImVtYWlsIjoibHVpc0BnaWFsLmNvbSIsImNyZWF0ZWRfYXQiOiIyMDIxLTExLTI5VDEyOjMxOjM0Ljk1N1oiLCJ1cGRhdGVkX2F0IjoiMjAyMS0xMS0yOVQxMjozMTozNC45NTdaIiwiaWF0IjoxNjM4MTg5MzM4LCJleHAiOjE2MzgyNzU3Mzh9.-1SNQq_12zm9TvCPwD_DkChWtl9zG_411V7AGxhl9W8|string|
+|token|JWT TOKEN|string|
 
 
 
 ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
 
 ## End-point: Get Transaction From One User
-Get all transactions from the user authenticated with the JWT
 ### Method: GET
 >```
 >chamberbank-backend.herokuapp.com/transaction
 >```
+Get all transactions from the user authenticated with the JWT
+
 ### 🔑 Authentication bearer
 
 |Param|value|Type|
 |---|---|---|
-|token|eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjM1Y2M1YzAxLWU1OGUtNDk3Zi1hNDJkLTAyM2I2MjFhZWQwYyIsIm5hbWUiOiJMdWlzIEZlbGlwZSIsImVtYWlsIjoibHVpc0BnaWwuY29tIiwiY3JlYXRlZF9hdCI6IjIwMjEtMTEtMjlUMTI6MzI6MTguNzA1WiIsInVwZGF0ZWRfYXQiOiIyMDIxLTExLTI5VDEyOjMyOjE4LjcwNVoiLCJpYXQiOjE2MzgyNzY2NzksImV4cCI6MTYzODM2MzA3OX0.33NDNOzBk6-izVGNXcP87y5pIuRTtKyUO93--bT54Jo|string|
+|token|JWT TOKEN|string|
 
 
 
