@@ -5,6 +5,7 @@ Added (
   uuid
   passport
   bcrypt
+  react-icons
 )
 
 login page (

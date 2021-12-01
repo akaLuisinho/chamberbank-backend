@@ -70,16 +70,4 @@ export class UserController {
   addMoney(@Body() body: any, @Request() req) {
     return this.userService.updateBalance(req.user.id, body.moneyQuantity);
   }
-
-  @UseGuards(JwtAuthGuard)
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return this.userService.update(id, updateUserDto);
-  }
-
-  @UseGuards(JwtAuthGuard)
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.userService.remove(id);
-  }
 }
