@@ -9,9 +9,23 @@ export class TransactionService {
     private userService: UserService,
   ) {}
 
-  async create(createTransactionDto: CreateTransactionDto) {
+  async create(createTransactionDto: CreateTransactionDto, balance) {
     if (createTransactionDto.toId === createTransactionDto.fromId) {
-      return;
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: 'Cannot Transfer yourself',
+        },
+        HttpStatus.BAD_REQUEST,
+      );
+    } else if (createTransactionDto.moneyQuantity > balance) {
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: 'Transfer money quantity is bigger than balance',
+        },
+        HttpStatus.BAD_REQUEST,
+      );
     } else {
       try {
         //set account balance from the user that receive the transaction
