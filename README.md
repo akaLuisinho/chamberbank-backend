@@ -226,18 +226,10 @@ Receives an id and value to make a transaction between the authenticated user an
 ## End-point: Get Transaction From One User
 ### Method: GET
 >```
->chamberbank-backend.herokuapp.com/transaction
+>chamberbank-backend.herokuapp.com/transaction/{userId}
 >```
 
 Get all transactions from the user sent in the body
-
-### Body (**raw**)
-
-```json
-{
-    "userId": "<id from user that you want the transactions>",
-}
-```
 
 ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ - - - - - - - - - - - - -
 _________________________________________________
