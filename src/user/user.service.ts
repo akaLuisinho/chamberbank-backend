@@ -124,4 +124,23 @@ export class UserService {
       );
     }
   }
+
+  async update(user: any, userId: string) {
+    try {
+      await this.prisma.user.update({
+        data: {
+          ...user,
+        },
+        where: { id: userId },
+      });
+    } catch (error) {
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: 'Could not update user',
+        },
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+  }
 }

@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Request,
+  Put,
   UseGuards,
 } from '@nestjs/common';
 import { UserService } from './user.service';
@@ -64,8 +65,14 @@ export class UserController {
   }
 
   @UseGuards(JwtAuthGuard)
+  @Put('/')
+  update(@Body() body: any, @Request() req) {
+    return this.userService.update(body, req.user.id);
+  }
+
+  @UseGuards(JwtAuthGuard)
   @Patch('/deposit')
-  addMoney(@Body() body: any, @Request() req) {
+  deposit(@Body() body: any, @Request() req) {
     return this.userService.updateBalance(req.user.id, body.moneyQuantity);
   }
 }
