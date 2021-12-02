@@ -1,6 +1,7 @@
 import {
   Controller,
   Get,
+  Param,
   Post,
   Body,
   UseGuards,
@@ -28,9 +29,11 @@ export class TransactionController {
     );
   }
 
-  @Get()
-  findAllFromOneUser(@Body() userId: string) {
-    const transactions = this.transactionService.findAllFromOneUser(userId);
+  @Get('/:userId')
+  findAllFromOneUser(@Param() params: any) {
+    const transactions = this.transactionService.findAllFromOneUser(
+      params.userId,
+    );
     return transactions;
   }
 }
