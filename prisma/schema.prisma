@@ -28,9 +28,9 @@ model User {
 
 model Transaction {
   id            String   @id @unique
-  from          User     @relation(fields: [fromId], references: [id], name: "From")
+  from          User     @relation(fields: [fromId], references: [id], onDelete: Cascade, name: "From")
   fromId        String
-  to            User     @relation(fields: [toId], references: [id], name: "To")
+  to            User     @relation(fields: [toId], references: [id], onDelete: Cascade, name: "To")
   toId          String
   moneyQuantity Int
   created_at    DateTime @default(now())

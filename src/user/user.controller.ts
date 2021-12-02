@@ -7,6 +7,7 @@ import {
   Param,
   Request,
   Put,
+  Delete,
   UseGuards,
 } from '@nestjs/common';
 import { UserService } from './user.service';
@@ -68,6 +69,12 @@ export class UserController {
   @Put('/')
   update(@Body() body: any, @Request() req) {
     return this.userService.update(body, req.user.id);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Delete('/')
+  delete(@Request() req) {
+    return this.userService.delete(req.user.id);
   }
 
   @UseGuards(JwtAuthGuard)

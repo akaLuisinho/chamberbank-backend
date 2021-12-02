@@ -143,4 +143,21 @@ export class UserService {
       );
     }
   }
+
+  async delete(userId: string) {
+    try {
+      await this.prisma.user.delete({
+        where: { id: userId },
+      });
+    } catch (error) {
+      console.log(error);
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: 'Could not update user',
+        },
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+  }
 }
