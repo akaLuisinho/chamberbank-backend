@@ -29,7 +29,42 @@
 #### UUID
 - Geração de id para usuários e transações
 
+## Getting Started
 
+### Pré-requisitos
+
+para rodar o projeto em modo de desenvolvimento, você vai precisar do mínimo para rodar uma aplicação em Nodejs, quer pode ser achado [aqui](https://nodejs.dev/learn/introduction-to-nodejs), e do postgre database, que pode ser achado [aqui](https://www.postgresqltutorial.com/postgresql-getting-started/)
+
+Você também poderá utilizar também um front-end rodando na sua máquina, que pode ser encontrado [aqui](https://github.com/akaluisinho/chamberbank-frontend).
+
+### Instalação
+
+**Clonando Repositório**
+
+```
+$ git clone https://github.com/akaLuisinho/chamberbank-backend
+
+$ cd chamberbank-backend
+```
+
+**Instalando Dependências**
+
+```
+$ yarn
+```
+
+_ou_
+
+```
+$ npm install
+```
+
+**Variáveis Ambiente**
+
+```
+DATABASE_URL="<url do banco de dados postgre>"
+JWT_SECRET="<jwt secret>"
+```
 
 # User
 
